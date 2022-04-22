@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+         {% for message in app.flashes('notice') %}
+            <div class="alert alert-success mt-4 mb-b">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="row mt-2 mb-2">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+                <a class="btn btn-info" href="{{ path('create') }}"> Add New </a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date Added</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Msrp</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Make</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Miles</th>
+                    <th scope="col">Vin</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for data in list %}
+                <tr>
+                    <th scope="row">{{ data.id }}</th>
+                    <td>{{ data.dateadded | date('Y-m-d h-i-s')}}</td>
+                    <td>{{ data.type }}</td>
+                    <td>{{ data.msrp }}</td>
+                    <td>{{ data.year }}</td>
+                    <td>{{ data.make }}</td>
+                    <td>{{ data.model }}</td>
+                    <td>{{ data.miles }}</td>
+                    <td>{{ data.vin }}</td>
+                    <td>
+                        <a class="btn btn-warning" href="{{ path('update', {'id': data.id }) }}"> Update </a>
+                        <a class="btn btn-danger" href="{{ path('delete', {'id': data.id }) }}"> Delete </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

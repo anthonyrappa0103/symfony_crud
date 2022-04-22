@@ -1,0 +1,37 @@
+
+app.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+app.swagger:
+    path: /api/doc.json
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger }
+
+vehicles_list:
+  path: /api/v1/vehicles
+  controller: App\Controller\MainController:indexAction
+  methods: [GET]
+
+vehicles_create:
+  path: /api/v1/vehicles
+  controller: App\Controller\MainController:createAction
+  methods: [POST]
+
+vehicles_update:
+  path: /api/v1/vehicles/{vehicleId}
+  controller: App\Controller\MainController:updateAction
+  methods: [PATCH]
+  requirements:
+    vehicleId: '\d+'
+
+vehicles_delete:
+  path: /api/v1/vehicles/{vehicleId}
+  controller: App\Controller\MainController:deleteAction
+  methods: [DELETE]
+  requirements:
+    vehicleId: '\d+'
+
+
+
